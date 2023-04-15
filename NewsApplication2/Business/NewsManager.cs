@@ -5,57 +5,36 @@ using NewsApplication2.Services;
 
 namespace NewsApplication2.Business
 {
-    public class NewsManager
-    {
-        EfNewsDal efNewsDal = new EfNewsDal();
-        int pageCount = 0;
-        public void AddNewsOnDB(News news)
-        {
-            CheckBoundDate();
-            var checkNews = efNewsDal.GetNewsByTitle(news.Title);
+	public class NewsManager
+	{
+		EfNewsDal efNewsDal = new EfNewsDal();
+		int pageCount = 0;
+		public void AddNewsOnDB(News news)
+		{
+			CheckBoundDate();
+			var checkNews = efNewsDal.GetNewsByTitle(news.Title);
 
-            if(checkNews != null)
-            {
-                return;
-            }
-            efNewsDal.Add(news);
+			if (checkNews != null)
+			{
+				return;
+			}
+			efNewsDal.Add(news);
 
-        }
+		}
 
-        public void CheckBoundDate()
-        {
+		public void CheckBoundDate()
+		{
 
-            string dateWhichDeletedNews = DateTime.Today.AddDays(-2).ToString("yyyy/MM/dd HH:mm:ss");
-
-
-            DateTime testtime = DateTime.Parse(dateWhichDeletedNews);
-
-            
-            efNewsDal.DeleteNewsByDate(testtime);
-        }
+			string dateWhichDeletedNews = DateTime.Today.AddDays(-2).ToString("yyyy/MM/dd HH:mm:ss");
 
 
+			DateTime testtime = DateTime.Parse(dateWhichDeletedNews);
 
-		//     public List<News> GetNewsOnAPI(DateTime date, int page, string saerchNews)
-		//     {
-		//         var gettedNews = NewsAPIService.GetNews(DateTime.Now, page, saerchNews);
-		//         var news = new List<News>();
 
-		//         foreach(var item in gettedNews)
-		//         {
-		//             AddNewsOnDB(item);
-		//         }
-		//if (gettedNews.Count % 15 != 0)
-		//{
-		//	pageCount--;
-		//}
+			efNewsDal.DeleteNewsByDate(testtime);
+		}
 
-		//pageCount = gettedNews.Count / 15;
 
-		//         news = gettedNews.GetRange(page * 15, 15);
-
-		//         return news;
-		//     }
 		public List<News> GetNewsOnAPI(DateTime date, int page, string searchNews)
 		{
 			var gettedNews = NewsAPIService.GetNews(DateTime.Now, page, searchNews);
@@ -66,7 +45,7 @@ namespace NewsApplication2.Business
 				AddNewsOnDB(item);
 			}
 
-			int pageCount = (int)Math.Ceiling((double)gettedNews.Count / 15);
+			pageCount = (int)Math.Ceiling((double)gettedNews.Count / 15);
 			int startIndex = (page - 1) * 15;
 
 			if (startIndex >= gettedNews.Count)
@@ -75,9 +54,7 @@ namespace NewsApplication2.Business
 			}
 
 			int count = Math.Min(15, gettedNews.Count - startIndex);
-
 			news = gettedNews.GetRange(startIndex, count);
-			viewData["PageCount"] = pageCount;
 			return news;
 
 		}
@@ -86,9 +63,9 @@ namespace NewsApplication2.Business
 
 
 		public int GetPageCount()
-        {
-            return pageCount;
-        }
+		{
+			return pageCount;
+		}
 
 	}
 }

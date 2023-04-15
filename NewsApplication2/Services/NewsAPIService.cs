@@ -11,7 +11,7 @@ namespace NewsApplication2.Services
 
         private static List<News> _news = new List<News>();
 
-        public static List<News> GetNews(DateTime date, int page, string saerchNews)
+        public static List<News> GetNews(DateTime date, int? page, string saerchNews)
         {
             _news.Clear();
             var newsApiClient = new NewsApiClient(_apiKey);
