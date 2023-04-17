@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/NewsApplication2.styles.css" asp-append-version="true" />
     <link href="@Url.Content("~/Content/style.css")" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" type="image/x-icon" href="@Url.Content("~/news.ico")">
+    <script src="~/js/script.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+
+
 
 </head>
 <body>
@@ -22,12 +27,14 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="News" asp-action="Index">News</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">News</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">About</a>
                         </li>
+
                     </ul>
+                    <i class="bi bi-brightness-high-fill" id="toggleDark"></i>
                 </div>
             </div>
         </nav>

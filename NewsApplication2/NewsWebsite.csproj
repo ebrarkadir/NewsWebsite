@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DataAccess\Abstract\**" />
+    <Content Remove="DataAccess\Abstract\**" />
+    <EmbeddedResource Remove="DataAccess\Abstract\**" />
+    <None Remove="DataAccess\Abstract\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.4">
@@ -14,10 +21,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="NewsAPI" Version="0.6.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="DataAccess\Abstract\" />
   </ItemGroup>
 
 </Project>
