@@ -8,7 +8,7 @@ namespace NewsApplication2.DataAccess.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=newsDB;Trusted_Connection=True");
+            optionsBuilder.UseSqlServer(@"Server=localhost; Database=newsDB; Trusted_Connection=True; TrustServerCertificate=True;");
         }
         public DbSet<News> news { get; set; }
     }
